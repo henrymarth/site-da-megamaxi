@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import logoAsset from "@/assets/megamaxi-logo.asset.json";
 import {
   Megaphone, TrendingUp, Settings2, Rocket, Sparkles, Bot, Workflow, LineChart,
   CheckCircle2, ArrowRight, MessageSquare, FileText, Database, Users, Clock,
@@ -30,7 +29,7 @@ const nav = [
 function Logo({ className = "" }: { className?: string }) {
   return (
     <a href="#top" className={`flex items-center gap-2 ${className}`}>
-      <img src={logoAsset.url} alt="MegaMaxi Tech" className="h-10 w-auto md:h-11" />
+      <img src="/megamaxi-logo.svg" alt="MegaMaxi Tech" className="h-10 w-auto md:h-11" />
     </a>
   );
 }
