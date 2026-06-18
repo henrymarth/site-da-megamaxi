@@ -1,25 +1,24 @@
-# Etapa 1: build com Bun
+# Etapa 1: build
 FROM oven/bun:1 AS builder
 
 WORKDIR /app
 
-COPY package.json bun.lockb* ./
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 COPY . .
 RUN bun run build
 
+# Etapa 2: runtime SSR
+FROM oven/bun:1-slim AS runner
 
-# Etapa 2: servir arquivos estáticos com Nginx
-FROM nginx:alpine
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3000
 
-# Remove a página padrão do Nginx
-RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/server.mjs ./server.mjs
 
-# Copia o build do Vite
-COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 3000
 
-# Config para React Router funcionar em rotas internas
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
+CMD ["bun", "run", "start"]
