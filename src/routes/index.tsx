@@ -29,7 +29,7 @@ const nav = [
 function Logo({ className = "" }: { className?: string }) {
   return (
     <a href="#top" className={`flex items-center gap-2 ${className}`}>
-      <img src="/megamaxi-logo.svg" alt="MegaMaxi Tech" className="h-10 w-auto md:h-11" />
+      <img src="/MegaMaxi%20Logo%201.png" alt="MegaMaxi Tech" className="h-10 w-auto md:h-11" />
     </a>
   );
 }
