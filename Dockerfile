@@ -21,4 +21,4 @@ COPY --from=builder /app/server.mjs ./server.mjs
 
 EXPOSE 3000
 
-CMD ["bun", "run", "start"]
+CMD ["bun", "server.mjs"]
