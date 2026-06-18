@@ -13,6 +13,10 @@ RUN bun run build
 # Etapa 2: servir arquivos estáticos com Nginx
 FROM nginx:alpine
 
+# Remove a página padrão do Nginx
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copia o build do Vite
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Config para React Router funcionar em rotas internas
